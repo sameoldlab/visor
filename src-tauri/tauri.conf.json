@@ -11,11 +11,24 @@
     "version": "0.0.1"
   },
   "tauri": {
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "menuOnLeftClick": true,
+      "iconAsTemplate": true
+    },
     "allowlist": {
       "all": false,
       "shell": {
-        "all": false,
-        "open": true
+        "all": true,
+        "open": true,
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "anvil-cli",
+            "cmd": "anvil",
+            "args": true
+          }
+        ]
       }
     },
     "bundle": {
@@ -40,7 +53,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Anvil UI",
+        "title": "Anvil",
         "width": 800,
         "height": 600
       }
