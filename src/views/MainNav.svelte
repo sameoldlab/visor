@@ -5,7 +5,7 @@
     <div>4</div>
     <div>5</div>
 </nav>
-<style>
+<style lang="scss">
     nav {
         padding: 23px 30px;
         display:flex;
