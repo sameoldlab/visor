@@ -1,2 +1,0 @@
-Error: 
-[31m(code: -32602, message: expected params sequence with length 1 but got 0, data: None)[0m
