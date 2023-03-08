@@ -42,6 +42,8 @@
 </script>
 
 <section class="container">
+  <h1>Log</h1>
+
   {#if !$live}
     <button on:click={() => startTestnet()}>Start Anvil</button>
   {:else}

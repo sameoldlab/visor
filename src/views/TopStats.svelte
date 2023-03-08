@@ -3,33 +3,29 @@
   import { state } from "../anvil"
   import { ethers } from "ethers"
   import { onMount } from "svelte"
+  import configJson from "../lib/anvil.json"
 
-  let blockNumber = 10,
-    chainID,
-    net: JSON
+  
+  let { base_fee, gas_limit, genesis_timestamp } = configJson
+
+  let current_block = 0
+  let network_id = "0"
+
   const provider = new ethers.JsonRpcProvider()
 
-  const loadb = async () => {
-    let {baseFeePerGas: $base_fee, gasLimit, gasUsed, transactions} = await provider.getBlock(0)
+  onMount(async () => {
     const network = await provider.getNetwork()
-    let nodeInfo = await provider.send("anvil_nodeInfo", [])
-    blockNumber = await provider.getBlockNumber()
-    chainID = await network.chainId
-    
-    console.log(`Block: `, $base_fee, gasLimit, gasUsed)
-    console.log(nodeInfo)
-    console.log("provider: ", provider)
-    console.log("net: ", net)
-    console.log("chainID: ", chainID)
-  }
+    current_block = await provider.getBlockNumber()
+    network_id = await network.chainId.toString()
+  })
 
   $: chain_state = [
-    { title: "Current Block", data: `${$state.current_block}` },
-    { title: "Base Fee", data: `${$state.base_fee}` },
-    { title: "Gas Limit", data: `${$state.gas_limit}` },
-    { title: "Genesis Timestamp", data: `${$state.gen_timestamp}` },
-    { title: "RPC Server", data: `${$state.rpc}` },
-    { title: "Network ID", data: `${$state.network_id}` },
+    { title: "Current Block", data: current_block },
+    { title: "Base Fee", data: base_fee },
+    { title: "Gas Limit", data: gas_limit },
+    { title: "Genesis Timestamp", data: genesis_timestamp },
+    // { title: "RPC Server", data: rpc },
+    { title: "Network ID", data: network_id },
   ]
 </script>
 
@@ -39,12 +35,15 @@
   {/each}
 </div>
 
-<button on:click={loadb}>Get Block</button>
-{blockNumber}
 
 <style lang="scss">
   div {
     display: flex;
     gap: 0;
+    width: 100%;
+    padding: 8px 0px;
+
+    background: #000;
+    
   }
 </style>

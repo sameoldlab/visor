@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
-    "ethers": "^6.0.8"
+    "viem": "^0.1.5"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.3",

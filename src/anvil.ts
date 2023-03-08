@@ -1,9 +1,8 @@
 import { Child, Command } from "@tauri-apps/api/shell"
-import { Block, ethers } from "ethers"
 import { writable } from "svelte/store"
 
-export const provider = new ethers.JsonRpcProvider()
-export const blocks = writable<Block[]>()
+// export const provider = new ethers.JsonRpcProvider()
+// export const blocks = writable<Block[]>()
 
 type NetworkState = {
   current_block: number
@@ -43,10 +42,11 @@ export const hd_path = writable<string>("m/44'/60'/0'/0/")
  * Handle to command child process
  */
 let _child: Child
-export const killTestnet = async () => {
+export const killTestnet = () => {
   if (_child == null) return
-  return await _child.kill()
+  return _child.kill()
 }
+
 export let testnet_log = writable<string>("")
 export let live = writable<boolean>(false)
 export async function startTestnet(args: string[] = []) {

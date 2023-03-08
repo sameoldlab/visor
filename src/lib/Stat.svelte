@@ -1,6 +1,6 @@
 <script>
     export let title = ""
-    export let data = ""
+    export let data
 </script>
 
 <div>
@@ -15,7 +15,7 @@
         gap: 4px;
 
         padding: 10px 20px;
-        border: 1px solid var(--border);
+        // border: 1px solid var(--border);
     }
     .title {
         line-height: 21px;
