@@ -23,6 +23,5 @@ dist-ssr
 *.sw?
 
 # Testing files
-anvil.json
 anvil.ipc
 anvil.txt

@@ -1,7 +1,5 @@
 <script lang="ts">
   import Stat from "../lib/Stat.svelte"
-  import { state } from "../anvil"
-  import { ethers } from "ethers"
   import { onMount } from "svelte"
   import configJson from "../lib/anvil.json"
 
@@ -11,12 +9,12 @@
   let current_block = 0
   let network_id = "0"
 
-  const provider = new ethers.JsonRpcProvider()
+//   const provider = new ethers.JsonRpcProvider()
 
   onMount(async () => {
-    const network = await provider.getNetwork()
-    current_block = await provider.getBlockNumber()
-    network_id = await network.chainId.toString()
+    // const network = await provider.getNetwork()
+    // current_block = await provider.getBlockNumber()
+    // network_id = await network.chainId.toString()
   })
 
   $: chain_state = [
