@@ -1,7 +1,17 @@
-# Tauri + Svelte + Typescript
+a GUI for anvil
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
+Inspired by Ganache UI
 
-## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+![image](public/ui.png)
+Made with Tauri and Svelte—*because life is too short for fat packages*.
+
+
+⚠⚠ currently functional, but ***very*** early and not very useful⚠⚠
+
+no package yet, but you can: 
+```sh
+degit 
+pnpm i
+npx tauri build
+```
