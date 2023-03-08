@@ -1,29 +1,31 @@
 <script>
-    export let title = ""
-    export let data
+  export let title = ""
+  export let data
+  export let grow = false
+  export let border = true
 </script>
 
-<div>
-    <span class="title">{title}</span>
-    <span class="data">{data}</span>
+<div class="{grow ? 'grow' : ''} {border ? 'border' : ''}">
+  <span class="title">{title}</span>
+  <span class="data">{data}</span>
 </div>
 
 <style lang="scss">
-    div {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    flex-grow: 0;
 
-        padding: 10px 20px;
-        border: 1px solid var(--border);
-    }
-    .title {
-        line-height: 21px;
-        font-weight: 500;
-        text-transform: uppercase;
-        color: #BABABA;
-    }
-    .data {
-        font-family: var(--mono);
-    }
+  }
+  .border {
+    margin-left: 1px;
+    padding: 10px 20px;
+    outline: var(--border); // No double borders
+  }
+  .grow {
+    flex-grow: 3;
+  }
 </style>

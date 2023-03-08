@@ -36,10 +36,11 @@
 
 <style lang="scss">
   div {
+    position: sticky;
+    top: 0;
     display: flex;
     gap: 0;
     width: 100%;
-    padding: 8px 0px;
 
     background: #000;
     

@@ -1,0 +1,43 @@
+:root {
+  --backgroud: #111111;
+  --border: 1px solid #373737;
+  --mono: "Fira Code", "Source Code Pro", "Fira Mono", monospace;
+  --sans: "Inter", "Gill Sans", "Helvetica", "Arial", sans-serif;
+  background-color: var(--backgroud);
+
+  --text-secondary: #828282;
+}
+
+body {
+  font-family: var(--sans);
+  color: white;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  //   letter-spacing: 0.025em;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+.container {
+  padding: 2em;
+}
+
+.title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.data {
+  font-family: var(--mono);
+}

@@ -1,9 +1,9 @@
 <script lang="ts">
   import Accounts from "./views/Accounts.svelte"
   import Log from "./views/Log.svelte"
-  import NavItem from "./lib/NavItem.svelte"
+  import NavItem from "./lib/Icons.svelte"
   import TopStats from "./views/ConfigData.svelte"
-  import { live, startTestnet } from "./anvil"
+  import { killTestnet, live, startTestnet } from "./anvil"
   import Settings from "./views/Settings.svelte"
   import Blocks from "./views/Blocks.svelte"
 
@@ -26,10 +26,14 @@
     <button on:click={() => (view = "settings")}>
       <NavItem name="settings" />
     </button>
-    {#if $live}
-    <button on:click={() => startTestnet()}>
-      <NavItem name="start" />
-    </button>
+    {#if !$live}
+      <button on:click={() => startTestnet()}>
+        <NavItem name="start" />
+      </button>
+    {:else}
+      <button on:click={killTestnet}>
+        <NavItem name="pause" />
+      </button>
     {/if}
   </div>
 </nav>
@@ -37,6 +41,7 @@
 <main>
   <TopStats />
   <div>
+    <!-- Todo: Routing  -->
     {#if view == "log"}
       <Log />
     {:else if view == "accounts"}
@@ -50,18 +55,6 @@
 </main>
 
 <style lang="scss">
-  :root {
-    --backgroud: #111111;
-    --border: #373737;
-    --mono: "Fira Code", "Source Code Pro", "Fira Mono", monospace;
-    background-color: var(--backgroud);
-    color: white;
-
-    button {
-      cursor: pointer;
-    }
-  }
-
   body {
     margin: 0;
     overflow-x: hidden;
@@ -74,7 +67,7 @@
     left: 0;
 
     background-color: black;
-    border-right: 1px solid var(--border);
+    border-right: var(--border);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -94,8 +87,6 @@
     button {
       display: block;
       background: transparent;
-      cursor: pointer;
-      border: 0;
       opacity: 0.7;
       padding: 16px 12px;
 

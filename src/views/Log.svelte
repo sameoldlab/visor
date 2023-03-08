@@ -62,9 +62,7 @@
 </section>
 
 <style lang="scss">
-  section {
-    padding: 16px;
-  }
+
   .term {
     padding: 16px;
     background-color: #010101;
