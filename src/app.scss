@@ -1,6 +1,9 @@
 :root {
   --backgroud: #111111;
   --border: 1px solid #373737;
+  --blue: #99eae5;
+  --red: #f5190c;
+  --yellow: #e6cf8d;
   --mono: "Fira Code", "Source Code Pro", "Fira Mono", monospace;
   --sans: "Inter", "Gill Sans", "Helvetica", "Arial", sans-serif;
   background-color: var(--backgroud);
@@ -23,6 +26,19 @@ h1 {
 button {
   cursor: pointer;
   border: 0;
+  padding: 12px 16px;
+  background: white;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+::selection {
+    color: black;
+    background: rgba(153, 234, 229, .9);
+
+}
+code {
+    font-family: var(--mono);
 }
 
 .container {

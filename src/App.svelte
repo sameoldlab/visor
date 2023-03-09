@@ -39,7 +39,9 @@
 </nav>
 
 <main>
-  <TopStats />
+  {#if $live}
+    <TopStats />
+  {/if}
   <div>
     <!-- Todo: Routing  -->
     {#if view == "log"}

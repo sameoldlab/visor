@@ -5,7 +5,7 @@
   export let border = true
 </script>
 
-<div class="{grow ? 'grow' : ''} {border ? 'border' : ''}">
+<div class="{grow} {border ? 'border' : ''}">
   <span class="title">{title}</span>
   <span class="data">{data}</span>
 </div>
