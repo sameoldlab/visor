@@ -6,6 +6,7 @@
   import { killTestnet, live, startTestnet } from "./anvil"
   import Settings from "./views/Settings.svelte"
   import Blocks from "./views/Blocks.svelte"
+  import { slide } from "svelte/transition"
 
   let view = "settings"
 </script>
@@ -40,7 +41,9 @@
 
 <main>
   {#if $live}
-    <TopStats />
+    <div transition:slide>
+      <TopStats />
+    </div>
   {/if}
   <div>
     <!-- Todo: Routing  -->
@@ -90,7 +93,7 @@
       display: block;
       background: transparent;
       opacity: 0.7;
-      padding: 16px 12px;
+      padding: 16px 8px;
 
       &:hover {
         opacity: 1;
@@ -98,7 +101,7 @@
     }
   }
   main {
-    margin-left: 56px;
+    margin-left: 48px; //48 = (56) - 8 = (m4 + p16 + w36 ) - 8
     margin-top: -8px;
     margin-right: -8px;
   }

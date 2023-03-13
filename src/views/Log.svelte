@@ -43,14 +43,6 @@
 
 <section class="container">
   <h1>Log</h1>
-
-  {#if !$live}
-    <button on:click={() => startTestnet()}>Start Anvil</button>
-  {:else}
-    <button on:click={killTestnet}>Stop Anvil</button>
-  {/if}
-
-  <br />
   <div class="term">
     <!-- \[+\d+m/g -->
     <p>
