@@ -13,6 +13,7 @@ export const blocks = writable<Block[]>([])
  */
 let _child: Child
 export const killTestnet = () => {
+  if (_child == null) return
   return _child.kill()
 }
 export async function startTestnet(args: string[] = []) {
@@ -23,7 +24,7 @@ export async function startTestnet(args: string[] = []) {
 
   const unwatch = client.watchBlocks({
     onBlock: (block) => {
-        block_number.set(block.number)
+      block_number.set(block.number)
       blocks.update((state) => {
         if (block && block?.number !== state[state.length - 1]?.number) {
           state = [...state, block] as Block[]

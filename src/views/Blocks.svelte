@@ -4,11 +4,29 @@
 
   let naturalDate = (unix_time: bigint) =>
     new Date(Number(unix_time) * 1e3).toLocaleString() // Internationalization for freee? Should probably test this
+
+  let tx = <
+    {
+      view: boolean
+      index: number | null
+    }
+  >{
+    view: false,
+    index: null,
+  }
+
+  function viewTx(i: number) {
+    if (i === tx.index) {
+        tx = { view: false, index: null }
+      return
+    }
+    tx = { view: true, index: i }
+  }
 </script>
 
 <div class="container">
   <h1>Blocks</h1>
-  {#each $blocks as { number, hash, timestamp }, i}
+  {#each $blocks as { number, hash, timestamp, transactions }, i}
     <div class="block">
       <span class="id">{number.toString()}</span>
       <div>
@@ -16,21 +34,23 @@
         <br />
         <span class="title">On: {naturalDate(timestamp)}</span>
       </div>
+      <button class="view-tx" on:click={() => viewTx(i)}>
+        <span class="title">TX Count</span>
+        <span class="data">{transactions.length}</span>
+
+        <!-- Should send tblock has to a function that-->
+      </button>
     </div>
+    {#if tx.view && i === tx.index}
+      {#each transactions as transaction}
+        <div class="block">
+          <Stat title="Transaction" data={transaction} border={false} />
+        </div>
+      {/each}
+    {/if}
   {/each}
 </div>
 
-<style lang="scss">
-
-.block {
-    padding: 20px 0;
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    // justify-content: space-between;
-    align-items: center;
-  }
-</style>
 <!-- 
 baseFeePerGas: 10293n
 difficulty: 0n
@@ -51,7 +71,24 @@ size: 512n
 stateRoot: "0x10baabfe446f34ffd15cf66bb1d4969f4499deea67207244c6a675ba2b5a6b88"
 timestamp: 1678722441n
 totalDifficulty: 0n
-transactions: [] (0)
+transactions: [ "0x1d59ff54b1eb26b013ce3cb5fc9dab3705b415a67127a003c3e61eb445bb8df2", ...]
 transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
 uncles: [] (0)
  -->
+<style lang="scss">
+  .block {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    // justify-content: space-between;
+    align-items: center;
+  }
+  .view-tx {
+    background-color: #f4ffb3;
+
+    .title {
+      color: black;
+    }
+  }
+</style>
