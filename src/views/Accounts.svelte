@@ -4,19 +4,19 @@
   import { formatEther, getAddress } from "viem"
   import { client } from "../lib/clients/public"
   import { onMount } from "svelte"
+  import { live } from "../anvil"
 
   let { available_accounts, private_keys, wallet } = configJson
-  type Account = [
-    {
-      addr?: string
-      key?: string
-      balance?: BigInt
-      transaction_count?: number
-    }
-  ]
-  $: accounts = []
+  type Account = {
+    addr: string
+    key: string
+    balance: bigint
+    transaction_count: number
+  }
+  let accounts = <Account[]>[]
 
   onMount(async () => {
+    if (!$live) return
     for (let i = 0, l = available_accounts.length; i < l; i++) {
       const balance = await client.getBalance({
         address: getAddress(available_accounts[i]),

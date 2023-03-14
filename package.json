@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
-    "viem": "^0.1.5"
+    "viem": "^0.1.14"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.3",
     "@tauri-apps/cli": "^1.2.3",
     "@tsconfig/svelte": "^3.0.0",
-    "@types/node": "^18.14.6",
-    "sass": "^1.58.3",
-    "svelte": "^3.55.1",
-    "svelte-check": "^3.0.4",
+    "@types/node": "^18.15.2",
+    "sass": "^1.59.2",
+    "svelte": "^3.56.0",
+    "svelte-check": "^3.1.4",
     "svelte-preprocess": "^5.0.1",
     "tslib": "^2.5.0",
     "typescript": "^4.9.5",

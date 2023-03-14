@@ -1,24 +1,16 @@
 <script lang="ts">
-  import Stat from "../lib/Stat.svelte"
-  import { onMount } from "svelte"
+  import { onDestroy } from "svelte"
+  import { block_number } from "../anvil"
+  import { client, INTERVAL } from "../lib/clients/public"
   import configJson from "../lib/anvil.json"
+  import Stat from "../lib/Stat.svelte"
 
-  
   let { base_fee, gas_limit, genesis_timestamp } = configJson
 
-  let current_block = 0
   let network_id = "0"
 
-//   const provider = new ethers.JsonRpcProvider()
-
-  onMount(async () => {
-    // const network = await provider.getNetwork()
-    // current_block = await provider.getBlockNumber()
-    // network_id = await network.chainId.toString()
-  })
-
   $: chain_state = [
-    { title: "Current Block", data: current_block },
+    { title: "Current Block", data: $block_number },
     { title: "Base Fee", data: base_fee },
     { title: "Gas Limit", data: gas_limit },
     { title: "Genesis Timestamp", data: genesis_timestamp },
@@ -33,16 +25,12 @@
   {/each}
 </div>
 
-
 <style lang="scss">
   div {
-    position: sticky;
-    top: 0;
     display: flex;
     gap: 0;
     width: 100%;
 
     background: #000;
-    
   }
 </style>

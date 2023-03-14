@@ -41,7 +41,7 @@
 
 <main>
   {#if $live}
-    <div transition:slide>
+    <div class="sticky" transition:slide>
       <TopStats />
     </div>
   {/if}
@@ -100,6 +100,13 @@
       }
     }
   }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+
   main {
     margin-left: 48px; //48 = (56) - 8 = (m4 + p16 + w36 ) - 8
     margin-top: -8px;
