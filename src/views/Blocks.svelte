@@ -1,19 +1,36 @@
 <script lang="ts">
+  import Stat from "../lib/Stat.svelte"
   import { blocks } from "../anvil"
 
-  let naturalDate = (unix_time) => new Date(unix_time * 1000).toLocaleString() // Internationalization for freee? Should probably test this
+  let naturalDate = (unix_time: bigint) =>
+    new Date(Number(unix_time) * 1e3).toLocaleString() // Internationalization for freee? Should probably test this
 </script>
 
 <div class="container">
   <h1>Blocks</h1>
   {#each $blocks as { number, hash, timestamp }, i}
-    <p>{number}</p>
-    <p>Hash: {hash}</p>
-    <p>Timestamp: {naturalDate(timestamp)}</p>
-    <br />
+    <div class="block">
+      <span class="id">{number.toString()}</span>
+      <div>
+        <Stat title="Hash" data={hash} border={false} />
+        <br />
+        <span class="title">On: {naturalDate(timestamp)}</span>
+      </div>
+    </div>
   {/each}
 </div>
 
+<style lang="scss">
+
+.block {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    // justify-content: space-between;
+    align-items: center;
+  }
+</style>
 <!-- 
 baseFeePerGas: 10293n
 difficulty: 0n

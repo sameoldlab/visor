@@ -47,7 +47,7 @@
 
     {#each accounts as { addr, key, balance, transaction_count }, i}
       <div class="address">
-        <span class="addr--id">{i}</span>
+        <span class="id">{i}</span>
         <div>
           <Stat title="Address" data={addr} border={false} />
         </div>
@@ -84,12 +84,5 @@
     // justify-content: space-between;
     align-items: center;
   }
-  .addr--id {
-    padding: 8px 12px;
-    text-align: center;
-    font-weight: 800;
-    font-weight: 800;
-    border: 1px solid white;
-    border-radius: 8px;
-  }
+
 </style>

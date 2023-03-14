@@ -23,6 +23,7 @@ export async function startTestnet(args: string[] = []) {
 
   const unwatch = client.watchBlocks({
     onBlock: (block) => {
+        block_number.set(block.number)
       blocks.update((state) => {
         if (block && block?.number !== state[state.length - 1]?.number) {
           state = [...state, block] as Block[]
