@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   export let title = ""
-  export let data
+  export let data: string
   export let grow = false
   export let border = true
 </script>
@@ -18,7 +18,6 @@
     justify-content: flex-end;
     gap: 4px;
     flex-grow: 0;
-
   }
   .border {
     margin-left: 1px;

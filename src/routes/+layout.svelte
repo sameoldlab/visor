@@ -1,16 +1,18 @@
 <script>
   import "../app.scss"
 
-  
+  import { live } from "../anvil"
   import MainNav from "$lib/MainNav.svelte"
   import ConfigData from "$lib/ConfigData.svelte"
-  export const prerender = true
-  export const ssr = false
 </script>
 
 <MainNav />
 <main>
-  <ConfigData/>
+  {#if $live}
+    <div class="sticky">
+      <ConfigData />
+    </div>
+  {/if}
   <slot />
 </main>
 

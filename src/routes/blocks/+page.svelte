@@ -1,26 +1,26 @@
 <script lang="ts">
-  import Stat from "$lib/Stat.svelte";
-  import { blocks } from "/src/anvil";
+  import Stat from "$lib/Stat.svelte"
+  import { blocks } from "../../anvil"
 
   let naturalDate = (unix_time: bigint) =>
-    new Date(Number(unix_time) * 1e3).toLocaleString(); // Internationalization for freee? Should probably test this
+    new Date(Number(unix_time) * 1e3).toLocaleString() // Internationalization for freee? Should probably test this
 
   let tx = <
     {
-      view: boolean;
-      index: number | null;
+      view: boolean
+      index: number | null
     }
   >{
     view: false,
-    index: null
-  };
+    index: null,
+  }
 
   function viewTx(i: number) {
     if (i === tx.index) {
-      tx = { view: false, index: null };
-      return;
+      tx = { view: false, index: null }
+      return
     }
-    tx = { view: true, index: i };
+    tx = { view: true, index: i }
   }
 </script>
 

@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { onDestroy } from "svelte"
   import { block_number } from "../anvil"
-  import { client, INTERVAL } from "$lib/clients/public"
   import configJson from "$lib/anvil.json"
   import Stat from "$lib/Stat.svelte"
 

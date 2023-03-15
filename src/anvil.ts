@@ -3,9 +3,9 @@ import { writable } from "svelte/store"
 import type { Block } from "viem"
 import { client, INTERVAL } from "./lib/clients/public"
 
-export let testnet_log = writable<string>("")
-export let live = writable<boolean>(false)
-export let block_number = writable<string>("0")
+export const testnet_log = writable<string>("")
+export const live = writable<boolean>(false)
+export const block_number = writable<string>("0")
 export const blocks = writable<Block[]>([])
 
 /**
@@ -18,20 +18,18 @@ export const killTestnet = () => {
 }
 export async function startTestnet(args: string[] = []) {
   args = ["--config-out", "../src/lib/anvil.json", ...args]
-  // process = await invoke("start_testnet", { args: ["-b", "3"] })
   const cmd: Command = new Command("anvil-cli", args)
   let i = 0
 
   const unwatch = client.watchBlocks({
     onBlock: (block) => {
-      block_number.set(block.number)
+      block_number.set(block.number?.toString())
       blocks.update((state) => {
         if (block && block?.number !== state[state.length - 1]?.number) {
           state = [...state, block] as Block[]
         }
         return state
       })
-      console.log("new block", block)
     },
     emitOnBegin: true,
     emitMissed: true,
@@ -65,7 +63,7 @@ export async function startTestnet(args: string[] = []) {
   })
 
   cmd.on("error", (line) => {
-    console.debug("on err: ", line)
+    console.error("on err: ", line)
     live.set(false)
     testnet_log.update((state) => state + `${line}\n`)
   })
@@ -74,7 +72,7 @@ export async function startTestnet(args: string[] = []) {
   _child = await cmd.spawn()
 
   cmd.stdout.on("data", (line) => {
-    console.debug("stdout: ", line)
+    console.info("stdout: ", line)
     live.set(true)
     testnet_log.update((state) => {
       if (state.includes("command finished with code")) {

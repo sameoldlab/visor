@@ -33,12 +33,11 @@ button {
   text-transform: uppercase;
 }
 ::selection {
-    color: black;
-    background: rgba(153, 234, 229, .9);
-
+  color: black;
+  background: rgba(153, 234, 229, 0.9);
 }
 code {
-    font-family: var(--mono);
+  font-family: var(--mono);
 }
 
 .container {
@@ -59,10 +58,10 @@ code {
 }
 
 .id {
-    padding: 8px 12px;
-    text-align: center;
-    font-weight: 800;
-    font-weight: 800;
-    border: 1px solid white;
-    border-radius: 8px;
-  }
+  padding: 8px 12px;
+  text-align: center;
+  font-weight: 800;
+  font-weight: 800;
+  border: 1px solid white;
+  border-radius: 8px;
+}

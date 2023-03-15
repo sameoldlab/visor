@@ -1,4 +1,4 @@
-import { createPublicClient, formatEther, http } from "viem"
+import { createPublicClient, http } from "viem"
 import { foundry } from "viem/chains"
 
 export let INTERVAL = 4_000
