@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { killTestnet, live, startTestnet } from "../anvil"
+  import { killTestnet, live, startTestnet } from "/src/anvil"
   let parseArgs = ""
   const handleSubmit = () => {
     if (parseArgs.trim() == "") return startTestnet()
@@ -95,7 +95,8 @@
       <p>
         <code>--ipc [&lt;PATH&gt;]</code><br />
         Starts an IPC endpoint at the given <code>PATH</code> argument or the
-        default path: unix: <code>tmp/anvil.ipc</code>, windows:
+        default path: unix:
+        <code>tmp/anvil.ipc</code>, windows:
         <code>\\.\pipe\anvil.ipc</code>
       </p>
       <p>

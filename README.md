@@ -15,12 +15,12 @@ npx tauri build
 ```
 
 Todo: 
--[x] Anvil Log
--[x] Accounts (Basic)
--[x] Blocks (Basic)
--[ ] Transactions (Basic)
--[ ] Test RPC calls (Impersonate, get tokens, rollback, mine, etc.)
--[ ] Setup GUI
--[ ] Save Environment
--[ ] Accounts
--[ ] Blocks
+- [x] Anvil Log
+- [x] Accounts (Basic)
+- [x] Blocks (Basic)
+- [ ] Transactions (Basic)
+- [ ] Test RPC calls (Impersonate, get tokens, rollback, mine, etc.)
+- [ ] Setup GUI
+- [ ] Save Environment
+- [ ] Accounts
+- [ ] Blocks

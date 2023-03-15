@@ -16,6 +16,15 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
 *.suo
 *.ntvs*
 *.njsproj

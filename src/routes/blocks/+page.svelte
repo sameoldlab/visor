@@ -1,26 +1,26 @@
 <script lang="ts">
-  import Stat from "../lib/Stat.svelte"
-  import { blocks } from "../anvil"
+  import Stat from "$lib/Stat.svelte";
+  import { blocks } from "/src/anvil";
 
   let naturalDate = (unix_time: bigint) =>
-    new Date(Number(unix_time) * 1e3).toLocaleString() // Internationalization for freee? Should probably test this
+    new Date(Number(unix_time) * 1e3).toLocaleString(); // Internationalization for freee? Should probably test this
 
   let tx = <
     {
-      view: boolean
-      index: number | null
+      view: boolean;
+      index: number | null;
     }
   >{
     view: false,
-    index: null,
-  }
+    index: null
+  };
 
   function viewTx(i: number) {
     if (i === tx.index) {
-        tx = { view: false, index: null }
-      return
+      tx = { view: false, index: null };
+      return;
     }
-    tx = { view: true, index: i }
+    tx = { view: true, index: i };
   }
 </script>
 
@@ -77,12 +77,18 @@ uncles: [] (0)
  -->
 <style lang="scss">
   .block {
-    padding: 12px 0;
+    padding: 12px 8px;
     display: flex;
     flex-direction: row;
     gap: 24px;
     // justify-content: space-between;
     align-items: center;
+    transition: all;
+    transition-duration: 200ms;
+    &:hover {
+      background: rgba(255, 255, 255, 0.075);
+      border-radius: 8px;
+    }
   }
   .view-tx {
     background-color: #f4ffb3;
