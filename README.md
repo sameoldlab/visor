@@ -1,6 +1,6 @@
-a GUI for anvil
+a GUI for [anvil](https://github.com/foundry-rs/foundry/blob/master/anvil)
 
-Inspired by Ganache UI
+Inspired by [Ganache UI](https://github.com/trufflesuite/ganache-ui)
 
 
 ![image](public/ui.png)
@@ -8,13 +8,16 @@ Inspired by Ganache UI
 ⚠⚠ functional, but early WIP⚠⚠
 
 no package yet, but you can: 
-```sh
-degit 
-pnpm i
+```sh 
+pnpm install
+mkdir -p ./public/bin
+ln -s /path/to/anvil ./public/bin/anvil-$TARGET-TRIPLE
 npx tauri build
 ```
+to get `$TARGET-TRIPLE` copy output from: `rustc -Vv | grep host | cut -f2 -d' '`
 
-Todo: 
+---
+## Todo: 
 - [x] Anvil Log
 - [x] Accounts (Basic)
 - [x] Blocks (Basic)
