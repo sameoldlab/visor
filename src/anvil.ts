@@ -16,9 +16,10 @@ export const killTestnet = () => {
   if (_child == null) return
   return _child.kill()
 }
+
 export async function startTestnet(args: string[] = []) {
-  args = ["--config-out", "../src/lib/anvil.json", ...args]
-  const cmd: Command = new Command("anvil-cli", args)
+//   args = ["--config-out", "~/.anvil-ui/anvil.json", ...args]
+  const cmd = Command.sidecar("../public/bin/anvil", args)
   let i = 0
 
   const unwatch = client.watchBlocks({
@@ -62,7 +63,7 @@ export async function startTestnet(args: string[] = []) {
     return
   })
 
-  cmd.on("error", (line) => {
+  cmd.on("error", (line: string) => {
     console.error("on err: ", line)
     live.set(false)
     testnet_log.update((state) => state + `${line}\n`)
@@ -71,7 +72,7 @@ export async function startTestnet(args: string[] = []) {
   // Assigning after  don't accidentally get a running process when commnd fails
   _child = await cmd.spawn()
 
-  cmd.stdout.on("data", (line) => {
+  cmd.stdout.on("data", (line: string) => {
     console.info("stdout: ", line)
     live.set(true)
     testnet_log.update((state) => {
@@ -85,8 +86,8 @@ export async function startTestnet(args: string[] = []) {
   })
 
   // Not needed. Errors already handled by listen events
-  /*   cmd.stderr.on("data", (line) => {
+  cmd.stderr.on("data", (line) => {
     console.debug("stderr: ", line)
     testnet_log.update((state) => state + `${line}<br/>`)
-  }) */
+  })
 }

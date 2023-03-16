@@ -3,7 +3,7 @@
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
     "devPath": "http://localhost:1420",
-    "distDir": "../dist",
+    "distDir": "../build",
     "withGlobalTauri": false
   },
   "package": {
@@ -24,14 +24,15 @@
         "sidecar": true,
         "scope": [
           {
-            "name": "anvil-cli",
-            "cmd": "anvil",
+            "name": "../public/bin/anvil",
+            "sidecar": true,
             "args": true
           }
         ]
       }
     },
     "bundle": {
+      "externalBin": ["../public/bin/anvil"],
       "active": true,
       "icon": [
         "icons/32x32.png",
