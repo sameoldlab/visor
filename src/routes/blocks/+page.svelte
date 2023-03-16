@@ -28,7 +28,7 @@
   <h1>Blocks</h1>
   {#each $blocks as { number, hash, timestamp, transactions }, i}
     <div class="block">
-      <span class="id">{number.toString()}</span>
+      <span class="id">{number?.toString()}</span>
       <div>
         <Stat title="Hash" data={hash} border={false} />
         <br />

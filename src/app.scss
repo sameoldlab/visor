@@ -4,14 +4,17 @@
   --blue: #99eae5;
   --red: #f5190c;
   --yellow: #e6cf8d;
-  --mono: "Fira Code", "Source Code Pro", "Fira Mono", monospace;
-  --sans: "Inter", "Gill Sans", "Helvetica", "Arial", sans-serif;
+  --mono: "Fira Code", "Source Code Pro", "Fira Mono", "SF Mono", monospace;
+  --sans: "Inter", "Gill Sans", Helvetica, Roboto, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   background-color: var(--backgroud);
 
   --text-secondary: #828282;
 }
 
 body {
+  overflow-x: hidden;
+  margin: 0px;
   font-family: var(--sans);
   color: white;
 }
@@ -46,8 +49,8 @@ code {
 
 .title {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   line-height: 100%;
   text-transform: uppercase;
   color: var(--text-secondary);

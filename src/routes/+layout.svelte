@@ -17,11 +17,6 @@
 </main>
 
 <style lang="scss">
-  body {
-    margin: 0;
-    overflow-x: hidden;
-  }
-
   .sticky {
     position: sticky;
     top: 0;
@@ -29,8 +24,7 @@
   }
 
   main {
-    margin-left: 48px; //48 = (56) - 8 = (m4 + p16 + w36 ) - 8
+    margin-left: 56px; // 56 = m4 + p16 + w36 
     margin-top: -8px;
-    margin-right: -8px;
   }
 </style>

@@ -1,46 +1,48 @@
 <script lang="ts">
-  import Stat from "$lib/Stat.svelte";
-  import configJson from "$lib/anvil.json";
-  import { formatEther, getAddress } from "viem";
-  import { client } from "$lib/clients/public";
-  import { onMount } from "svelte";
-  import { live } from "/src/anvil";
+  import Stat from "$lib/Stat.svelte"
+  import configJson from "$lib/anvil.json"
+  import { formatEther, getAddress } from "viem"
+  import { client } from "$lib/clients/public"
+  import { onMount } from "svelte"
+  import { live } from "/src/anvil"
 
-  let { available_accounts, private_keys, wallet } = configJson;
+  let { available_accounts, private_keys, wallet } = configJson
   type Account = {
-    addr: string;
-    key: string;
-    balance: bigint;
-    transaction_count: number;
-  };
-  let accounts = <Account[]>[];
+    addr: string
+    key: string
+    balance: bigint
+    transaction_count: number
+  }
+  let accounts = <Account[]>[]
 
   onMount(async () => {
-    if (!$live) return;
+    if (!$live) return
     for (let i = 0, l = available_accounts.length; i < l; i++) {
       const balance = await client.getBalance({
         address: getAddress(available_accounts[i]),
-        blockTag: "latest"
-      });
+        blockTag: "latest",
+      })
       const transaction_count = await client.getTransactionCount({
         address: getAddress(available_accounts[i]),
-        blockTag: "latest"
-      });
+        blockTag: "latest",
+      })
 
       accounts[i] = {
         addr: available_accounts[i],
         key: private_keys[i],
         balance: balance,
-        transaction_count: transaction_count
-      };
+        transaction_count: transaction_count,
+      }
     }
-  });
+  })
 </script>
 
 <div class="container">
   <h1>Accounts</h1>
   <div class="box">
     <div class="wallet-config">
+      <!-- <div class="grow0">Hello</div> -->
+      <!-- <div class="grow1">Stronk</div> -->
       <Stat title="Mnemonic" data={wallet.mnemonic} grow={true} />
       <Stat title="HD Path" data={wallet.derivation_path} />
     </div>

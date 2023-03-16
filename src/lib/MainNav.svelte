@@ -1,6 +1,6 @@
 <script lang="ts">
   import NavItem from "$lib/Icons.svelte"
-  import { live, killTestnet, startTestnet } from "/src/anvil"
+  import { live, killTestnet, startTestnet } from "../anvil"
 </script>
 
 <nav>
@@ -43,34 +43,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    .nav--main {
-      //   padding: 10px 0;
-      flex-direction: column;
-      display: flex;
-    }
-
-    .nav--end {
-      //   padding: 10px 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .nav-item {
-      display: block;
-      background: transparent;
-      opacity: 0.7;
-      padding: 16px 8px;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
   }
 
-  .sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
+  .nav--main {
+    //   padding: 10px 0;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .nav--end {
+    //   padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-item {
+    display: block;
+    background: transparent;
+    opacity: 0.7;
+    padding: 16px 8px;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 </style>
