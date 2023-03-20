@@ -28,9 +28,9 @@
   <h1>Blocks</h1>
   {#each $blocks as { number, hash, timestamp, transactions }, i}
     <div class="block">
-      <span class="id">{number?.toString()}</span>
+      <span class="id">{number?.toString()}</span> <!-- move or truncate. breaks layout after 4 digits -->
       <div>
-        <Stat title="Hash" data={hash} border={false} />
+        <Stat title="Hash" data={hash} border={false} grow={true}/>
         <br />
         <span class="title">On: {naturalDate(timestamp)}</span>
       </div>
@@ -77,6 +77,7 @@ uncles: [] (0)
  -->
 <style lang="scss">
   .block {
+    width: 100%;
     padding: 12px 8px;
     display: flex;
     flex-direction: row;
@@ -85,6 +86,7 @@ uncles: [] (0)
     align-items: center;
     transition: all;
     transition-duration: 200ms;
+
     &:hover {
       background: rgba(255, 255, 255, 0.075);
       border-radius: 8px;

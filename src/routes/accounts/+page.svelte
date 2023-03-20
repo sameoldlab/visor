@@ -4,7 +4,7 @@
   import { formatEther, getAddress } from "viem"
   import { client } from "$lib/clients/public"
   import { onMount } from "svelte"
-  import { live } from "/src/anvil"
+  import { live } from "../../anvil"
 
   let { available_accounts, private_keys, wallet } = configJson
   type Account = {

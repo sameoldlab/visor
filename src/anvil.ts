@@ -18,18 +18,20 @@ export const killTestnet = () => {
 }
 
 export async function startTestnet(args: string[] = []) {
-//   args = ["--config-out", "~/.anvil-ui/anvil.json", ...args]
+  //   args = ["--config-out", "~/.anvil-ui/anvil.json", ...args]
   const cmd = Command.sidecar("../public/bin/anvil", args)
   let i = 0
 
   const unwatch = client.watchBlocks({
     onBlock: (block) => {
-      block_number.set(block.number?.toString())
-      blocks.update((state) => {
-        if (block && block?.number !== state[state.length - 1]?.number) {
-          state = [...state, block] as Block[]
-        }
-        return state
+      block_number.update((current) => {
+        // Check if current block has changed then update block_number and blocks. 
+        // Avoids double check and unnecessary updates on block store
+        if (block.number === null) return current
+        if (current === block.number.toString()) return current
+
+        blocks.update((state) => [...state, block] as Block[])
+        return block.number.toString()
       })
     },
     emitOnBegin: true,

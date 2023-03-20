@@ -1,24 +1,29 @@
 <script lang="ts">
   import NavItem from "$lib/Icons.svelte"
+  import { page } from "$app/stores"
   import { live, killTestnet, startTestnet } from "../anvil"
+
+  const routes = ["log", "accounts", "blocks", "transactions",  "settings"]
 </script>
 
 <nav>
   <div class="nav--main">
-    <a class="nav-item" href="./accounts">
-      <NavItem name="accounts" />
-    </a>
-    <a class="nav-item" href="./log">
-      <NavItem name="log" />
-    </a>
-    <a class="nav-item" href="./blocks">
-      <NavItem name="blocks" />
-    </a>
+    {#each routes as route}
+      {@const active = $page.url.pathname?.includes(route)}
+      <a
+        class="nav-item"
+        class:active
+        href="./{route}"
+      >
+        <NavItem name={route} {active} />
+      </a>
+    {/each}
   </div>
+
   <div class="nav--end">
-    <a class="nav-item" href="./settings">
-      <NavItem name="settings" />
-    </a>
+    <!--     <a class="nav-item" href="./settings">
+      <NavItem name="settings" active={$page.url.pathname?.includes("settings")} />
+    </a> -->
     {#if !$live}
       <button class="nav-item" on:click={() => startTestnet()}>
         <NavItem name="start" />
@@ -60,11 +65,16 @@
   .nav-item {
     display: block;
     background: transparent;
-    opacity: 0.7;
     padding: 16px 8px;
+    opacity: 0.6;
+    transition: all;
+    transition-duration: 200ms;
 
     &:hover {
       opacity: 1;
     }
   }
+  .active {
+      opacity: 1;
+    }
 </style>
