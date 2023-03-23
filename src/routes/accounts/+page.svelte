@@ -39,6 +39,7 @@
 
 <div class="container">
   <h1>Accounts</h1>
+  
   <div class="box">
     <div class="wallet-config">
       <!-- <div class="grow0">Hello</div> -->
@@ -48,14 +49,21 @@
     </div>
 
     {#each accounts as { addr, key, balance, transaction_count }, i}
-      <div class="address">
-        <span class="id">{i}</span>
-        <div>
-          <Stat title="Address" data={addr} border={false} />
+      <div class="item">
+        <div class="row">
+          <span class="id">{i}</span>
+          <div>
+            <Stat title="Address" data={addr} border={false} />
+          </div>
         </div>
-        <Stat title="Balance" data="Ξ {formatEther(balance)}" border={false} />
-        <Stat title="TX Count" data={transaction_count} border={false} />
-
+        <div class="row text-right">
+          <Stat
+            title="Balance"
+            data="{formatEther(balance)} Ξ"
+            border={false}
+          />
+          <Stat title="Nonce" data={transaction_count} border={false} />
+        </div>
         <!-- <Stat title="Key" data={key} border={false} /> -->
         <!--         <div>
           <span class="title"> Key</span>
@@ -70,20 +78,10 @@
   .wallet-config {
     display: flex;
     flex-direction: row;
+    margin:-1px;
   }
-  .box {
-    background: #000;
-    // padding: 2em;
-    border: var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .address {
-    padding: 20px;
+  .row {
     display: flex;
-    flex-direction: row;
-    gap: 24px;
-    // justify-content: space-between;
-    align-items: center;
+    gap: 16px;
   }
 </style>

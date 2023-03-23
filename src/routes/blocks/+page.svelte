@@ -26,29 +26,32 @@
 
 <div class="container">
   <h1>Blocks</h1>
-  {#each $blocks as { number, hash, timestamp, transactions }, i}
-    <div class="block">
-      <span class="id">{number?.toString()}</span> <!-- move or truncate. breaks layout after 4 digits -->
-      <div>
-        <Stat title="Hash" data={hash} border={false} grow={true}/>
-        <br />
-        <span class="title">On: {naturalDate(timestamp)}</span>
-      </div>
-      <button class="view-tx" on:click={() => viewTx(i)}>
-        <span class="title">TX Count</span>
-        <span class="data">{transactions.length}</span>
-
-        <!-- Should send tblock has to a function that-->
-      </button>
-    </div>
-    {#if tx.view && i === tx.index}
-      {#each transactions as transaction}
-        <div class="block">
-          <Stat title="Transaction" data={transaction} border={false} />
+  <div class="box">
+    {#each $blocks as { number, hash, timestamp, transactions }, i}
+      <div class="item block">
+        <span class="id">{number?.toString()}</span>
+        <!-- move or truncate. breaks layout after 4 digits -->
+        <div class="hash">
+          <Stat title="Hash" data={hash} border={false} grow={true} />
+          <br />
+          <span class="title">On: {naturalDate(timestamp)}</span>
         </div>
-      {/each}
-    {/if}
-  {/each}
+
+        <button class="view-tx" on:click={() => viewTx(i)}>
+          <span class="title">TX Count</span>
+          <span class="data">{transactions.length}</span>
+          <!-- Should send tblock has to a function that-->
+        </button>
+      </div>
+      {#if tx.view && i === tx.index}
+        {#each transactions as transaction}
+          <div class="block">
+            <Stat title="Transaction" data={transaction} border={false} />
+          </div>
+        {/each}
+      {/if}
+    {/each}
+  </div>
 </div>
 
 <!-- 
@@ -76,20 +79,20 @@ transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e36
 uncles: [] (0)
  -->
 <style lang="scss">
+  .hash {
+    // width: 100%; /* 66 chars total */
+    overflow-wrap: break-word;
+    
+  }
   .block {
-    width: 100%;
-    padding: 12px 8px;
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    // justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
+
     transition: all;
     transition-duration: 200ms;
 
     &:hover {
       background: rgba(255, 255, 255, 0.075);
-      border-radius: 8px;
     }
   }
   .view-tx {

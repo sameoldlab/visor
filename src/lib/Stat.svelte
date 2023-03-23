@@ -3,10 +3,11 @@
   export let data
   export let grow = false
   export let border = true
+  export let stack = false
 </script>
 
-<div class="{grow ? 'grow' : ''} {border ? 'border' : ''}">
-  <span class="title">{title}</span>
+<div class:grow class:border class:stack>
+  <span class="title" >{title}</span>
   <span class="data">{data}</span>
 </div>
 
@@ -25,5 +26,8 @@
   }
   .grow {
     flex-grow: 1;
+  }
+  .stack {
+    flex-direction: row;
   }
 </style>

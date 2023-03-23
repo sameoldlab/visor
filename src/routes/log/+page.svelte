@@ -2,9 +2,7 @@
   import { testnet_log } from '../../anvil'
 </script>
 
-<section class="container">
-  <h1>Log</h1>
-</section>
+
 <div class="term">
   <!-- \[+\d+m/g -->
   <p>
@@ -17,7 +15,6 @@
 
 <style lang="scss">
   .term {
-    margin: 8px;
     padding: 4px 20px;
     background-color: #010101;
     border-radius: 8px;
