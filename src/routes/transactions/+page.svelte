@@ -69,21 +69,31 @@
     },
   ]
 
-  const trunc= (hex: string) => `${hex.slice(0, 6)}~${hex.slice(hex.length-5, hex.length-1)}`
+  const trunc = (hex: string) =>
+    `${hex.slice(0, 6)}~${hex.slice(hex.length - 5, hex.length - 1)}`
 </script>
 
 <div class="container">
   <h1>Transactions</h1>
   <div class="box">
-    {#each mock as { hash, nonce, from, blockHash, blockNumber,value, transactionIndex, r, s, to }}
-      <div class= "item">
-        <span class="data hash" >{hash}</span>
+    {#each mock as { hash, nonce, from, blockHash, blockNumber, value, transactionIndex, r, s, to }}
+      <div class="item">
+        <span class="data hash">{hash}</span>
         <div class="stack text-right">
-            <Stat title="To: " data={trunc(to)} border={false} stack={true}/>
-            <Stat title="From: " data={trunc(from)} border={false} stack={true}/>
+          <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
+          <Stat
+            title="From: "
+            data={trunc(from)}
+            border={false}
+            unstack={true}
+          />
         </div>
         <div class="text-right">
-            <Stat title="Value" data="{formatEther(value)}&nbsp;Ξ" border={false} />
+          <Stat
+            title="Value"
+            data="{formatEther(value)}&nbsp;Ξ"
+            border={false}
+          />
         </div>
         <!-- <Stat title="S:" data={s} border={false} /> -->
         <!-- <Stat title="R:" data={r} border={false} /> -->
@@ -96,7 +106,6 @@
 </div>
 
 <style lang="scss">
-
   .hash {
     width: 33ch; /* 66 chars total */
     overflow-wrap: break-word;
@@ -105,7 +114,5 @@
   .stack {
     display: flex;
     flex-direction: column;
-    gap: 4px;
   }
-  
 </style>
