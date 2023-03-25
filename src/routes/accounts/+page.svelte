@@ -1,7 +1,8 @@
 <script lang="ts">
   import Stat from "$lib/Stat.svelte"
   import configJson from "$lib/anvil.json"
-  import { formatEther, getAddress } from "viem"
+  import { getAddress } from "viem"
+  import  {formatEther} from "$lib/utils"
   import { client } from "$lib/clients/public"
   import { onMount } from "svelte"
   import { live } from "../../anvil"
@@ -80,8 +81,5 @@
     flex-direction: row;
     margin:-1px;
   }
-  .row {
-    display: flex;
-    gap: 16px;
-  }
+
 </style>

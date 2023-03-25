@@ -4,6 +4,7 @@
   import { client } from "$lib/clients/public"
   import type { Transaction, Address } from "viem"
   import { formatEther } from "viem"
+  import { trunc, naturalDate } from "$lib/utils"
 
   let transactions: Transaction[] = []
 
@@ -33,7 +34,8 @@
       gas: 21000n,
       gasPrice: 4000000000n,
       hash: "0x07fe94672df3644359f23fc494230452f1523355c2535113b056f751d229312e",
-      input: "0x",
+      input:
+        "0xx45b163f7c444ec30277af999340ce8d3690c1e442x5ffa20abd6a3a64ba59 efe924e18bc89c547262360xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
       maxFeePerGas: 5000000000n,
       maxPriorityFeePerGas: 3000000000n,
       nonce: 0,
@@ -69,17 +71,17 @@
     },
   ]
 
-  const trunc = (hex: string) =>
-    `${hex.slice(0, 6)}~${hex.slice(hex.length - 5, hex.length - 1)}`
+  let active: null | number = null
+  const setActive = (id: number) => (active = active === id ? null : id)
 </script>
 
 <div class="container">
   <h1>Transactions</h1>
   <div class="box">
-    {#each mock as { hash, nonce, from, blockHash, blockNumber, value, transactionIndex, r, s, to }}
-      <div class="item">
+    {#each transactions as { hash, from, to, value, ...t }, id}
+      <button class="item" on:click={() => setActive(id)}>
         <span class="data hash">{hash}</span>
-        <div class="stack text-right">
+        <div class="text-right">
           <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
           <Stat
             title="From: "
@@ -95,10 +97,40 @@
             border={false}
           />
         </div>
-        <!-- <Stat title="S:" data={s} border={false} /> -->
-        <!-- <Stat title="R:" data={r} border={false} /> -->
-        <!-- <Stat title="R:" data={r} border={false} /> -->
-      </div>
+      </button>
+      {#if active === id}
+        <div class="stack">
+          <div class="row">
+            <Stat title="Block #" data={t.blockNumber} border={false} />
+            <Stat
+              title="Timestamp"
+              data={naturalDate($blocks[Number(t.blockNumber) - 1]?.timestamp)}
+              border={false}
+            />
+            <div class=" text-right">
+
+            <Stat title="TX Type" data={t.type} border={false} />
+            </div>
+          </div>
+          <div class="row">
+            <Stat title="Gas Used" data={t.gas} border={false} />
+            <Stat title="Gas Price" data={t.gasPrice} border={false} />
+
+            <div class=" text-right">
+              <Stat title="Gas Limit" data={t.maxFeePerGas} border={false} />
+            </div>
+            <!-- <Stat title="Block Number" data={t.blockNumber} border={false} /> -->
+          </div>
+          {#if t.input !== "0x"}
+            <div class="row">
+              <p class="data">
+                {t.input}
+              </p>
+              <!-- <Stat title="Input" data={t.input} border={false} /> -->
+            </div>
+          {/if}
+        </div>
+      {/if}
     {:else}
       <null />
     {/each}
@@ -114,5 +146,13 @@
   .stack {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    // padding-bottom: 20px;
+  }
+  .row {
+    // box-sizing: border-box;
+    overflow-wrap: break-word;
+    // width: 100%;
+    padding: 4px 20px;
   }
 </style>
