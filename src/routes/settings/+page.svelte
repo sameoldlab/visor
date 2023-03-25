@@ -18,7 +18,7 @@
     <p class="title">Customize <code>`run`</code> command:</p>
     <form class="custom--run" on:submit|preventDefault={handleSubmit}>
       <input bind:value={parseArgs} placeholder="anvil" />
-      <button type="submit">Run ▶</button>
+      <button class="btn" type="submit">Run ▶</button>
     </form>
 
     <h4 id="examples">EXAMPLES</h4>
@@ -198,7 +198,7 @@
       </p>
     </section>
   {:else}
-    <button on:click={killTestnet}>Stop Anvil</button>
+    <button class="btn" on:click={killTestnet}>Stop Anvil</button>
   {/if}
 </section>
 

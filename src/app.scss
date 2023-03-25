@@ -31,12 +31,17 @@ h1 {
 button {
   cursor: pointer;
   border: 0;
+  background: black;
+  color: white;
+}
+
+.btn {
   padding: 12px 16px;
-  background: white;
   font-weight: 700;
   font-size: 1em;
   text-transform: uppercase;
 }
+
 ::selection {
   color: black;
   background: rgba(153, 234, 229, 0.9);
@@ -65,10 +70,16 @@ code {
 }
 
 .id {
-  padding: 8px 12px;
-  text-align: center;
+  height: 30px;
+  width: 30px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-weight: 800;
   font-weight: 800;
+
   border: 1px solid white;
   border-radius: 8px;
 }
@@ -82,7 +93,9 @@ code {
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
-  
+
+  font-size: 16px;
+
   &:hover {
     background: rgba(255, 255, 255, 0.075);
   }
@@ -100,4 +113,13 @@ code {
 .text-right {
   text-align: right;
   align-items: end;
+}
+
+.row {
+//   width: 100%;
+  align-items: inherit;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+
 }

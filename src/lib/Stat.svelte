@@ -3,11 +3,11 @@
   export let data
   export let grow = false
   export let border = true
-  export let stack = false
+  export let unstack = false
 </script>
 
-<div class:grow class:border class:stack>
-  <span class="title" >{title}</span>
+<div class:grow class:border class:unstack>
+  <span class="title">{title}</span>
   <span class="data">{data}</span>
 </div>
 
@@ -27,7 +27,11 @@
   .grow {
     flex-grow: 1;
   }
-  .stack {
+  .title, .data {
+    display: block;
+  }
+  .unstack {
     flex-direction: row;
+    align-items: baseline;
   }
 </style>
