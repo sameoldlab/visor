@@ -2,7 +2,7 @@
   import Stat from "$lib/Stat.svelte"
   import configJson from "$lib/anvil.json"
   import { getAddress } from "viem"
-  import  {formatEther} from "$lib/utils"
+  import { formatEther } from "$lib/utils"
   import { client } from "$lib/clients/public"
   import { onMount } from "svelte"
   import { live } from "../../anvil"
@@ -39,8 +39,6 @@
 </script>
 
 <div class="container">
-  <h1>Accounts</h1>
-  
   <div class="box">
     <div class="wallet-config">
       <!-- <div class="grow0">Hello</div> -->
@@ -50,7 +48,7 @@
     </div>
 
     {#each accounts as { addr, key, balance, transaction_count }, i}
-      <div class="item">
+      <div class="item p-base row">
         <div class="row">
           <span class="id">{i}</span>
           <div>
@@ -58,11 +56,18 @@
           </div>
         </div>
         <div class="row text-right">
-          <Stat
-            title="Balance"
-            data="{formatEther(balance)} Ξ"
-            border={false}
-          />
+          <!-- <Stat -->
+          <!-- title="Balance" -->
+          <!-- data="ETH {formatEther(balance)}" -->
+          <!-- border={false} -->
+          <!-- /> -->
+          <div class="stack">
+            <span class="title">Balance</span>
+            <span
+              ><span class="data">{formatEther(balance, 2)}</span>
+              <span class="eth">ETH</span></span
+            >
+          </div>
           <Stat title="Nonce" data={transaction_count} border={false} />
         </div>
         <!-- <Stat title="Key" data={key} border={false} /> -->
@@ -79,7 +84,14 @@
   .wallet-config {
     display: flex;
     flex-direction: row;
-    margin:-1px;
+    margin: -1px;
   }
-
+  .eth {
+    opacity: 0.4;
+    font-size: 12px;
+    // margin-left: -8px;
+    font-weight: 700;
+    font-stretch: expanded;
+    font-synthesis: 700 normal true;
+  }
 </style>

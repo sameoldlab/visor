@@ -3,7 +3,6 @@
   import { blocks } from "../../anvil"
   import { naturalDate } from "$lib/utils"
 
-
   let tx = <
     {
       view: boolean
@@ -27,34 +26,40 @@
   <h1>Blocks</h1>
   <div class="box">
     {#each $blocks as { number, hash, timestamp, transactions }, i}
-      <div class="item block">
-        <div class="row">
+      <button class="item row p-base" on:click={() => viewTx(i)}>
+        <div class="row row-tight">
           <span class="id">{number?.toString()}</span>
           <!-- move or truncate. breaks layout after 4 digits -->
           <div class="hash">
             <Stat title="Hash" data={hash} border={false} grow={true} />
-            <br />
+          </div>
         </div>
         <div class="stack">
-            <span class="title">On:</span> 
-            <p class="data">{naturalDate(timestamp)}</p>
+          <span class="title">On</span>
+          <span class="data">{naturalDate(timestamp)}</span>
         </div>
-    </div>
-
-        {#if transactions.length >= 0}
-          <button class="view-tx" on:click={() => viewTx(i)}>
+        {#if transactions.length > 0}
+          <div class="stack view-tx text-right">
             <span class="title">TX Count</span>
             <span class="data">{transactions.length}</span>
             <!-- Should send tblock has to a function that-->
-          </button>
-        {/if}
-      </div>
-      {#if tx.view && i === tx.index}
-        {#each transactions as transaction}
-          <div class="block">
-            <Stat title="Transaction" data={transaction} border={false} />
           </div>
-        {/each}
+          {:else}
+          <span class="title">empty</span>
+
+        {/if}
+      </button>
+
+      {#if tx.view && i === tx.index && transactions.length > 0}
+        <div class="stack p-base">
+          <div class="tx">
+            <p class="title">Transactions</p>
+            {#each transactions as transaction}
+              <p class="data tx">{transaction}</p>
+              <!-- <Stat title="Transaction" data={transaction} border={false} /> -->
+            {/each}
+          </div>
+        </div>
       {/if}
     {/each}
   </div>
@@ -86,7 +91,7 @@ uncles: [] (0)
  -->
 <style lang="scss">
   .hash {
-    width: 33ch; /* 66 chars total */
+    width: 37ch; /* 66 chars total */
     overflow-wrap: break-word;
   }
   .block {
@@ -96,11 +101,15 @@ uncles: [] (0)
     transition: all;
     transition-duration: 200ms;
   }
-  .view-tx {
-    background-color: #f4ffb3;
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    // padding-bottom: 20px;
+  }
 
-    .title {
-      color: black;
-    }
+  .tx {
+    width: 100%;
+    overflow-wrap: break-word;
   }
 </style>

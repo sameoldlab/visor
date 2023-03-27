@@ -5,6 +5,7 @@
   import type { Transaction, Address } from "viem"
   import { formatEther } from "viem"
   import { trunc, naturalDate } from "$lib/utils"
+  import { fade, slide, blur } from "svelte/transition"
 
   let transactions: Transaction[] = []
 
@@ -35,7 +36,7 @@
       gasPrice: 4000000000n,
       hash: "0x07fe94672df3644359f23fc494230452f1523355c2535113b056f751d229312e",
       input:
-        "0xx45b163f7c444ec30277af999340ce8d3690c1e442x5ffa20abd6a3a64ba59 efe924e18bc89c547262360xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "0x45b163f7c444ec30277af999340ce8d3690c1e442x5ffa20abd6a3a64ba59efe924e18bc89c547262360xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
       maxFeePerGas: 5000000000n,
       maxPriorityFeePerGas: 3000000000n,
       nonce: 0,
@@ -79,7 +80,7 @@
   <h1>Transactions</h1>
   <div class="box">
     {#each transactions as { hash, from, to, value, ...t }, id}
-      <button class="item" on:click={() => setActive(id)}>
+      <button class="item row p-base" on:click={() => setActive(id)} in:fade>
         <span class="data hash">{hash}</span>
         <div class="text-right">
           <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
@@ -99,7 +100,7 @@
         </div>
       </button>
       {#if active === id}
-        <div class="stack">
+        <div class="stack p-base">
           <div class="row">
             <Stat title="Block #" data={t.blockNumber} border={false} />
             <Stat
@@ -108,8 +109,7 @@
               border={false}
             />
             <div class=" text-right">
-
-            <Stat title="TX Type" data={t.type} border={false} />
+              <Stat title="TX Type" data={t.type} border={false} />
             </div>
           </div>
           <div class="row">
@@ -123,7 +123,7 @@
           </div>
           {#if t.input !== "0x"}
             <div class="row">
-              <p class="data">
+              <p class="data tx-input">
                 {t.input}
               </p>
               <!-- <Stat title="Input" data={t.input} border={false} /> -->
@@ -143,16 +143,12 @@
     overflow-wrap: break-word;
   }
 
-  .stack {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    // padding-bottom: 20px;
-  }
+
   .row {
-    // box-sizing: border-box;
     overflow-wrap: break-word;
-    // width: 100%;
-    padding: 4px 20px;
+  }
+
+  .tx-input {
+    width: 100%;
   }
 </style>

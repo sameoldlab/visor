@@ -221,11 +221,10 @@
       padding: 0;
       padding-left: 24px;
     }
-    button {
-      color: white;
-      background: #343434;
-      margin: 0;
-      border: 0;
-    }
+  }
+  
+  .btn {
+    color: white;
+    background: #343434;
   }
 </style>
