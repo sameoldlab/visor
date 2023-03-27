@@ -9,29 +9,33 @@
   let rpc = "localhost:8545" //get from config
 
   $: chain_state = [
-    { title: "Current Block", data: $block_number, grow: false },
+    { title: "Block #", data: $block_number, grow: false },
     { title: "Base Fee", data: base_fee, grow: false },
     { title: "Gas Limit", data: gas_limit, grow: false },
     { title: "Gas Price", data: gas_price, grow: false },
-    { title: "Genesis Timestamp", data: genesis_timestamp, grow: true },
-    { title: "Chain ID", data: network_id, grow: false },
+    { title: "Genesis Stamp", data: genesis_timestamp, grow: true },
+    { title: "Chain", data: network_id, grow: false },
     { title: "RPC Server", data: rpc, grow: true },
   ]
 </script>
 
-<div class="contain">
+<div class="contain sticky">
   {#each chain_state as state}
     <Stat {...state} />
   {/each}
 </div>
 
 <style lang="scss">
-  div.contain {
+  .contain {
     display: flex;
     flex-direction: row;
-    gap: 0;
     width: 100%;
-
     background: #000;
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
   }
 </style>
