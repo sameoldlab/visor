@@ -21,7 +21,7 @@ to get `$TARGET-TRIPLE` copy output from: `rustc -Vv | grep host | cut -f2 -d' '
 - [x] Anvil Log
 - [x] Accounts (Basic)
 - [x] Blocks (Basic)
-- [ ] Transactions (Basic)
+- [x] Transactions (Basic)
 - [ ] Test RPC calls (Impersonate, get tokens, rollback, mine, etc.)
 - [ ] Setup GUI
 - [ ] Save Environment
