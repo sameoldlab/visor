@@ -11,16 +11,9 @@
     "version": "0.0.1"
   },
   "tauri": {
-    "systemTray": {
-      "iconPath": "icons/icon.png",
-      "menuOnLeftClick": false,
-      "iconAsTemplate": true
-    },
     "allowlist": {
       "all": false,
       "shell": {
-        "all": true,
-        "open": true,
         "sidecar": true,
         "scope": [
           {
@@ -41,7 +34,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "anvil.sameold.lab",
+      "identifier": "com.sameoldlab.anvil-ui",
       "targets": "all"
     },
     "security": {
