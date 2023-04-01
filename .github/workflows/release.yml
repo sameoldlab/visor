@@ -10,16 +10,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-18.04, windows-latest]
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+          with:
+            version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
           cache: 'pnpm'
       - uses: dtolnay/rust-toolchain@stable
+      - name: Install frontend dependencies
+        run: pnpm install
           
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-20.04'
@@ -32,10 +37,8 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
 
-      - name: Install frontend dependencies
-        run: pnpm install
 
-      - name: Build the app
+      - name: Build app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
