@@ -11,16 +11,9 @@
     "version": "0.0.1"
   },
   "tauri": {
-    "systemTray": {
-      "iconPath": "icons/icon.png",
-      "menuOnLeftClick": false,
-      "iconAsTemplate": true
-    },
     "allowlist": {
       "all": false,
       "shell": {
-        "all": true,
-        "open": true,
         "sidecar": true,
         "scope": [
           {
@@ -29,6 +22,14 @@
             "args": true
           }
         ]
+      },
+      "fs": {
+        "scope": ["$APPLOCALDATA/config.json"],
+        "readFile": true,
+        "exists": true
+      },
+      "path": {
+        "all": true
       }
     },
     "bundle": {
@@ -41,7 +42,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "anvil.sameold.lab",
+      "identifier": "com.sameoldlab.anvil-ui",
       "targets": "all"
     },
     "security": {

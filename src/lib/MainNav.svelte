@@ -18,6 +18,11 @@
         <NavItem name={route} {active} />
       </a>
     {/each}
+    <a
+    class="nav-item"
+    href="./tweaks"
+  > 🧪
+  </a>
   </div>
 
   <div class="nav--end">
@@ -48,12 +53,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
   }
 
   .nav--main {
     //   padding: 10px 0;
-    flex-direction: column;
-    display: flex;
+    flex-direction: inherit;
+    display: inherit;
+    align-items: inherit;
+
   }
 
   .nav--end {

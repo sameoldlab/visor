@@ -6,12 +6,11 @@ use std::{
     process::{Command, Stdio},
     thread
 };
-use tauri::{
-    // api::process::{Command, CommandChild, Output},
-    AppHandle, CustomMenuItem, SystemTray, SystemTrayEvent,
-    SystemTrayMenu, SystemTrayMenuItem,
-    Manager, 
+/* use tauri::{
+    api::process::{Command, CommandChild, Output},
+    AppHandle, Manager 
   };
+ */
 
 #[tauri::command]
 fn stop_testnet(process: u32) {
@@ -42,7 +41,7 @@ async fn start_testnet(
 }
 
 fn main() {
-    let tray_menu = SystemTrayMenu::new()
+/*     let tray_menu = SystemTrayMenu::new()
             .add_item(CustomMenuItem::new(
                 "visibility-toggle".to_string(),
                 "Hide"))
@@ -51,7 +50,7 @@ fn main() {
                 "quit".to_string(),
                 "Quit"
             ));
-    let _tray = SystemTray::new().with_menu(tray_menu);
+    let _tray = SystemTray::new().with_menu(tray_menu); */
     
 /*      .setup(|app| {
             // the default value is `main`. note that it must be unique
@@ -71,22 +70,22 @@ fn main() {
     
     
     let app = tauri::Builder::default()
-    // .setup(|app| {
-        // https://tauri.app/v1/guides/features/events
-    //     let id = app.listen_global("event-name", |event| {
-    //         println!("got event-name with payload {:?}", event.payload());
-    //       });
-    //       // unlisten to the event using the `id` returned on the `listen_global` function
-    //       // an `once_global` API is also exposed on the `App` struct
-    //       app.unlisten(id);
+/*     .setup(|app| {
+        https://tauri.app/v1/guides/features/events
+        let id = app.listen_global("event-name", |event| {
+            println!("got event-name with payload {:?}", event.payload());
+          });
+          // unlisten to the event using the `id` returned on the `listen_global` function
+          // an `once_global` API is also exposed on the `App` struct
+          app.unlisten(id);
     
-    //       // emit the `event-name` event to all webview windows on the frontend
-    //       app.emit_all("event-name", Payload { message: "Tauri is awesome!".into() }).unwrap();
-    //     Ok(()) 
-    // })
-    // .system_tray(tray)
-    // .on_system_tray_event(on_tray_event)
-    // .manage(AppState {anvil_output: Default::default()})
+          // emit the `event-name` event to all webview windows on the frontend
+          app.emit_all("event-name", Payload { message: "Tauri is awesome!".into() }).unwrap();
+        Ok(()) 
+    })
+    .system_tray(tray)
+    .on_system_tray_event(on_tray_event)
+    .manage(AppState {anvil_output: Default::default()}) */
     .invoke_handler(tauri::generate_handler![stop_testnet, start_testnet])      
     .build(tauri::generate_context!())
     .expect("error while running tauri application");
@@ -102,10 +101,10 @@ fn main() {
         
 }
 
-/**
+/*
  *  Limbo till I figure out where to listen for window close outside before clicking on a menuitem
  */
-fn _on_tray_event(
+/* fn _on_tray_event(
     app: &AppHandle,
     event: SystemTrayEvent,
 ) {
@@ -151,4 +150,4 @@ fn _on_tray_event(
         }
         _ => {}
     }
-}
+} */

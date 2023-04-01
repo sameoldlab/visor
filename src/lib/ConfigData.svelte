@@ -1,12 +1,21 @@
 <script lang="ts">
   import { block_number } from "../anvil"
-  import configJson from "$lib/anvil.json"
+  import getConfig from "$lib/getConfig"
   import Stat from "$lib/Stat.svelte"
+  import { onMount } from "svelte"
 
-  let { base_fee, gas_limit, genesis_timestamp, gas_price } = configJson //check if these change when integrating test client
+  let base_fee: string, gas_limit: string, genesis_timestamp: string, gas_price: string
+
+  onMount(async () => {
+    // Read the text file in the `$APPCONFIG/app.conf` path
+    const configJson = await getConfig()
+    if (!configJson) return
+    ;({ base_fee, gas_limit, genesis_timestamp, gas_price } = configJson) //check if these change when integrating test client
+
+  })
 
   let network_id = "31337" //get from viem
-  let rpc = "localhost:8545" //get from config
+  let rpc = "localhost:8545" //get from settings config
 
   $: chain_state = [
     { title: "Block #", data: $block_number, grow: false },
