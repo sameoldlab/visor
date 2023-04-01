@@ -17,15 +17,17 @@ export const killTestnet = () => {
   return _child.kill()
 }
 
+import { appLocalDataDir } from "@tauri-apps/api/path"
+
 export async function startTestnet(args: string[] = []) {
-  //   args = ["--config-out", "~/.anvil-ui/anvil.json", ...args]
+  const appLocalDataDirPath = await appLocalDataDir()
+  args = ["--config-out", `${appLocalDataDirPath}config.json`, ...args]
   const cmd = Command.sidecar("../public/bin/anvil", args)
-  let i = 0
 
   const unwatch = client.watchBlocks({
     onBlock: (block) => {
       block_number.update((current) => {
-        // Check if current block has changed then update block_number and blocks. 
+        // Check if current block has changed then update block_number and blocks.
         // Avoids double check and unnecessary updates on block store
         if (block.number === null) return current
         if (current === block.number.toString()) return current
@@ -66,17 +68,15 @@ export async function startTestnet(args: string[] = []) {
   })
 
   cmd.on("error", (line: string) => {
-    console.error("on err: ", line)
     live.set(false)
+    console.error("on err: ", line)
     testnet_log.update((state) => state + `${line}\n`)
   })
 
-  // Assigning after  don't accidentally get a running process when commnd fails
   _child = await cmd.spawn()
 
   cmd.stdout.on("data", (line: string) => {
     console.info("stdout: ", line)
-    live.set(true)
     testnet_log.update((state) => {
       if (state.includes("command finished with code")) {
         blocks.set([]) // save output until next run
@@ -85,9 +85,9 @@ export async function startTestnet(args: string[] = []) {
         return state + `${line}<br/>`
       }
     })
+    live.set(true)
   })
 
-  // Not needed. Errors already handled by listen events
   cmd.stderr.on("data", (line) => {
     console.debug("stderr: ", line)
     testnet_log.update((state) => state + `${line}<br/>`)

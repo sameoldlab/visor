@@ -22,6 +22,14 @@
             "args": true
           }
         ]
+      },
+      "fs": {
+        "scope": ["$APPLOCALDATA/config.json"],
+        "readFile": true,
+        "exists": true
+      },
+      "path": {
+        "all": true
       }
     },
     "bundle": {
