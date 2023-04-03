@@ -45,6 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: 'App Name v__VERSION__'
+          releaseName: 'Anvil UI v__VERSION__'
           releaseDraft: false
           prerelease: true
