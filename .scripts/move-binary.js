@@ -18,9 +18,11 @@ async function main() {
   // get target triple for current platform
   const rustInfo = (await execa("rustc", ["-vV"])).stdout
   const targetTriple = /host: (\S+)/g.exec(rustInfo)[1]
-  if (!targetTriple) {
+
+  if (!targetTriple)
     throw new Error("Failed to determine platform target triple")
-  }
+
+
   // Rename binary if it does not already exist
   if (!existsSync(`public/bin/anvil-${targetTriple}`))
     renameSync(`public/bin/anvil`, `public/bin/anvil-${targetTriple}${extension}`)
