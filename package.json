@@ -14,23 +14,23 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
-    "viem": "^0.1.19"
+    "viem": "^0.1.26"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.1",
-    "@sveltejs/kit": "^1.11.0",
+    "@sveltejs/kit": "^1.15.0",
     "@tauri-apps/cli": "^1.2.3",
-    "@types/node": "^18.15.3",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.55.0",
-    "eslint": "^8.36.0",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.37.0",
     "eslint-plugin-svelte3": "^4.0.0",
-    "sass": "^1.59.3",
-    "svelte": "^3.56.0",
+    "execa": "7.0.0",
+    "sass": "^1.60.0",
+    "svelte": "^3.58.0",
     "svelte-check": "^3.1.4",
     "tslib": "^2.5.0",
     "typescript": "^4.9.5",
-    "vite": "^4.1.4",
-    "execa": "7.0.0"
+    "vite": "^4.2.1"
   }
 }
