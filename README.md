@@ -7,14 +7,12 @@ Inspired by [Ganache UI](https://github.com/trufflesuite/ganache-ui)
 
 ⚠⚠ functional, but early WIP⚠⚠
 
-no package yet, but you can: 
+to install latest from source: 
 ```sh 
-pnpm install
-mkdir -p ./public/bin
-ln -s /path/to/anvil ./public/bin/anvil-$TARGET-TRIPLE
+git checkout dev
+pnpm i
 npx tauri build
 ```
-to get `$TARGET-TRIPLE` copy output from: `rustc -Vv | grep host | cut -f2 -d' '`
 
 ---
 ## Todo: 
