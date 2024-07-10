@@ -9,17 +9,14 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "eslint './src/**/*.{js,ts,svelte}'",
-    "tauri": "tauri"
+    "lint": "eslint './src/**/*.{js,ts,svelte}'"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.4.0",
     "viem": "^0.1.26"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.2",
     "@sveltejs/kit": "^1.22.3",
-    "@tauri-apps/cli": "^1.4.0",
     "@types/node": "^18.17.1",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",

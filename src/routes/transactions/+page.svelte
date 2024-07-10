@@ -80,7 +80,7 @@
   <h1>Transactions</h1>
   <div class="box">
     {#each transactions as { hash, from, to, value, ...t }, id}
-      <button class="item row p-base" on:click={() => setActive(id)} in:fade>
+      <button class="item row p-base" on:click={() => setActive(id)} in:fade|global>
         <span class="data hash">{hash}</span>
         <div class="text-right">
           <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
