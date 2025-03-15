@@ -1,7 +1,6 @@
-import { Child, Command } from "@tauri-apps/api/shell"
 import { writable } from "svelte/store"
 import type { Block } from "viem"
-import { client, INTERVAL } from "./lib/clients/public"
+import { client } from "./lib/clients/public"
 
 export const testnet_log = writable<string>("")
 export const live = writable<boolean>(false)
@@ -17,7 +16,6 @@ export const killTestnet = () => {
   return _child.kill()
 }
 
-import { appLocalDataDir } from "@tauri-apps/api/path"
 
 export async function startTestnet(args: string[] = []) {
   const appLocalDataDirPath = await appLocalDataDir()

@@ -1,15 +1,16 @@
-import { exists, readTextFile, BaseDirectory } from "@tauri-apps/api/fs"
+// import { exists, readTextFile, BaseDirectory } from "@tauri-apps/api/fs"
 import type { Address } from "viem"
 
 const getConfig = async () => {
   const exist = await exists("config.json", {
-    dir: BaseDirectory.AppLocalData,
+    // dir: BaseDirectory.AppLocalData,
   })
   if (!exist) throw new Error("config file does not exist")
 
-  const config = await readTextFile("config.json", {
-        dir: BaseDirectory.AppLocalData,
-      })
+  // const config = await readTextFile("config.json", {
+        // dir: BaseDirectory.AppLocalData,
+      // })
+  const config = {}
 
   return (JSON.parse(config) as {
       available_accounts: Address[]
