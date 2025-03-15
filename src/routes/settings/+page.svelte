@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { killTestnet, live, startTestnet } from "/src/anvil"
-  let parseArgs = ""
-  const handleSubmit = () => {
+  import { killTestnet, live, startTestnet } from "$lib/anvil.svelte"
+  let parseArgs = $state("")
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault()
     if (parseArgs.trim() == "") return startTestnet()
 
     const args = parseArgs.replace("anvil", "").trim().split(" ")
@@ -16,7 +17,7 @@
   <br />
   {#if !$live}
     <p class="title">Customize <code>`run`</code> command:</p>
-    <form class="custom--run" on:submit|preventDefault={handleSubmit}>
+    <form class="custom--run" onsubmit={handleSubmit}>
       <input bind:value={parseArgs} placeholder="anvil" />
       <button class="btn" type="submit">Run ▶</button>
     </form>
@@ -198,7 +199,7 @@
       </p>
     </section>
   {:else}
-    <button class="btn" on:click={killTestnet}>Stop Anvil</button>
+    <button class="btn" onclick={killTestnet}>Stop Anvil</button>
   {/if}
 </section>
 

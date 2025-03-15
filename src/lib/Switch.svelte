@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let checked: boolean
-  export let type: boolean
+  interface Props {
+    checked: boolean;
+    type: boolean;
+  }
+
+  let { checked = $bindable(), type }: Props = $props();
   checked = type
 </script>
 

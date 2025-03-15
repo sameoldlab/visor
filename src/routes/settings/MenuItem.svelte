@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import {
     Listbox,
     ListboxButton,
@@ -14,13 +16,26 @@
     unavailable: boolean
   }[]
 
-  export let title: string
-  export let description: string
-  export let type: string | number | boolean | List
-  export let val: typeof type | undefined = undefined
+  interface Props {
+    title: string;
+    description: string;
+    type: string | number | boolean | List;
+    val?: typeof type | undefined;
+    children?: import('svelte').Snippet;
+  }
 
-  let selected = Array.isArray(type) && type[0]
-  $: val = selected ? selected.name : val
+  let {
+    title,
+    description,
+    type,
+    val = $bindable(undefined),
+    children
+  }: Props = $props();
+
+  let selected = $state(Array.isArray(type) && type[0])
+  run(() => {
+    val = selected ? selected.name : val
+  });
   const isNumber = (e: KeyboardEvent) => {
     console.log(/[0-9]/i.test(e.key))
   }
@@ -36,7 +51,7 @@
       type="number"
       bind:value={val}
       placeholder={type}
-      on:keydown={isNumber}
+      onkeydown={isNumber}
       min="0"
       step="10"
     />
@@ -49,7 +64,7 @@
       class={val ? "switch switch-enabled" : "switch switch-disabled"}
     >
       <span class="sr-only">{description}</span>
-      <span class="toggle" class:toggle-on={val} /></Switch
+      <span class="toggle" class:toggle-on={val}></span></Switch
     >
   {:else}
     <Listbox value={selected} on:change={(e) => (selected = e.detail)}>
@@ -78,32 +93,34 @@
             value={item}
             disabled={item.unavailable}
             class={({ active }) => (active ? "active" : "")}
-            let:selected
+            
           >
-            {item.name}&nbsp;{#if selected}
-              <!-- https://icons.radix-ui.com/ -->
+            {#snippet children({ selected })}
+                                {item.name}&nbsp;{#if selected}
+                <!-- https://icons.radix-ui.com/ -->
 
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                ><path
-                  d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                /></svg
-              >
-            {/if}
-          </ListboxOption>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  ><path
+                    d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  /></svg
+                >
+              {/if}
+                                          {/snippet}
+                            </ListboxOption>
         {/each}
       </ListboxOptions>
     </Listbox>
   {/if}
 
-  <slot />
+  {@render children?.()}
 </div>
 
 <style lang="scss">

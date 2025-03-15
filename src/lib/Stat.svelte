@@ -1,9 +1,19 @@
 <script lang="ts">
-  export let title = ""
-  export let data
-  export let grow = false
-  export let border = true
-  export let unstack = false
+  interface Props {
+    title?: string;
+    data: any;
+    grow?: boolean;
+    border?: boolean;
+    unstack?: boolean;
+  }
+
+  let {
+    title = "",
+    data,
+    grow = false,
+    border = true,
+    unstack = false
+  }: Props = $props();
 </script>
 
 <div class:grow class:border class:unstack>

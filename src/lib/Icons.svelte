@@ -1,7 +1,11 @@
 <script lang="ts">
-  export let name: string
-  export let active = false
-  $: stroke = active ? "var(--blue)" : "#F8F8F8"
+  interface Props {
+    name: string;
+    active?: boolean;
+  }
+
+  let { name, active = false }: Props = $props();
+  let stroke = $derived(active ? "var(--blue)" : "#F8F8F8")
 
   const icons = {
     blocks: {

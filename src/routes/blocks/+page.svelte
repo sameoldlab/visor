@@ -3,7 +3,7 @@
   import { blocks } from "../../anvil"
   import { naturalDate } from "$lib/utils"
 
-  let tx = <
+  let tx = $state(<
     {
       view: boolean
       index: number | null
@@ -11,7 +11,7 @@
   >{
     view: false,
     index: null,
-  }
+  })
 
   function viewTx(i: number) {
     if (i === tx.index) {
@@ -26,7 +26,7 @@
   <h1>Blocks</h1>
   <div class="box">
     {#each $blocks as { number, hash, timestamp, transactions }, i}
-      <button class="item row p-base" on:click={() => viewTx(i)}>
+      <button class="item row p-base" onclick={() => viewTx(i)}>
         <div class="row row-tight">
           <span class="id">{number?.toString()}</span>
           <!-- move or truncate. breaks layout after 4 digits -->

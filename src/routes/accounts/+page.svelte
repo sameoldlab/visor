@@ -12,7 +12,7 @@
     balance: bigint
     transaction_count: number
   }
-  let accounts = <Account[]>[]
+  let accounts = $state(<Account[]>[])
 
   const updAccount = async (address: Address) => {
     const balance = await client.getBalance({

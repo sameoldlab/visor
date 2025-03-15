@@ -4,14 +4,14 @@
 
   let parseArgs = ""
 
-  $: runCmd = EvmOpts.reduce((acc, curr) => {
+  let runCmd = $derived(EvmOpts.reduce((acc, curr) => {
     if (curr.val) return [...acc, curr.args, curr.val]
     return acc
-  }, [])
-  let accounts: number,
-    balance: number,
+  }, []))
+  let accounts: number = $state(),
+    balance: number = $state(),
     hdPath: string,
-    mnemonic: string,
+    mnemonic: string = $state(),
     noMining: boolean
   let automine = true
 

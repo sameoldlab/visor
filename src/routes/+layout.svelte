@@ -1,10 +1,15 @@
-<script>
+<script lang="ts">
   import "$lib/styles/app.css"
   import "$lib/styles/normalize.css"
 
   import { live } from "../anvil"
   import MainNav from "$lib/MainNav.svelte"
   import ConfigData from "$lib/ConfigData.svelte"
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <MainNav />
@@ -12,7 +17,7 @@
   {#if $live}
     <ConfigData />
   {/if}
-  <slot />
+  {@render children?.()}
 </main>
 
 <style>

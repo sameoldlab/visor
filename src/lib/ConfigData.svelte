@@ -4,7 +4,7 @@
   import Stat from "$lib/Stat.svelte"
   import { onMount } from "svelte"
 
-  let base_fee: string, gas_limit: string, genesis_timestamp: string, gas_price: string
+  let base_fee: string = $state(), gas_limit: string = $state(), genesis_timestamp: string = $state(), gas_price: string = $state()
 
   onMount(async () => {
     // Read the text file in the `$APPCONFIG/app.conf` path
@@ -17,7 +17,7 @@
   let network_id = "31337" //get from viem
   let rpc = "localhost:8545" //get from settings config
 
-  $: chain_state = [
+  let chain_state = $derived([
     { title: "Block #", data: $block_number, grow: false },
     { title: "Base Fee", data: base_fee, grow: false },
     { title: "Gas Limit", data: gas_limit, grow: false },
@@ -25,7 +25,7 @@
     { title: "Genesis Stamp", data: genesis_timestamp, grow: true },
     { title: "Chain", data: network_id, grow: false },
     { title: "RPC Server", data: rpc, grow: true },
-  ]
+  ])
 </script>
 
 <div class="contain sticky">

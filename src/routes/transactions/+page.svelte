@@ -7,7 +7,7 @@
   import { trunc, naturalDate } from "$lib/utils"
   import { fade, slide, blur } from "svelte/transition"
 
-  let transactions: Transaction[] = []
+  let transactions: Transaction[] = $state([])
 
   // Currently recreating the entire array every update. Not good for performance.
   blocks.subscribe((val) => {
@@ -72,7 +72,7 @@
     },
   ]
 
-  let active: null | number = null
+  let active: null | number = $state(null)
   const setActive = (id: number) => (active = active === id ? null : id)
 </script>
 
@@ -80,7 +80,7 @@
   <h1>Transactions</h1>
   <div class="box">
     {#each transactions as { hash, from, to, value, ...t }, id}
-      <button class="item row p-base" on:click={() => setActive(id)} in:fade|global>
+      <button class="item row p-base" onclick={() => setActive(id)} in:fade|global>
         <span class="data hash">{hash}</span>
         <div class="text-right">
           <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
@@ -132,7 +132,7 @@
         </div>
       {/if}
     {:else}
-      <null />
+      <null></null>
     {/each}
   </div>
 </div>

@@ -4,21 +4,21 @@
 
   let parseArgs = ""
 
-  $: runCmd = EvmOpts.reduce((acc, curr) => {
+  let runCmd = $derived(EvmOpts.reduce((acc, curr) => {
     if (curr.val) return [...acc, curr.args, curr.val]
     return acc
-  }, [])
-  let blockTime: number,
-    noMining: boolean,
+  }, []))
+  let blockTime: number = $state(),
+    noMining: boolean = $state(),
     order: boolean,
-    genStamp: number,
-    baseFee: number,
-    chainId: number,
-    gasLimit: number,
-    gasPrice: number,
-    codeSize: number
+    genStamp: number = $state(),
+    baseFee: number = $state(),
+    chainId: number = $state(),
+    gasLimit: number = $state(),
+    gasPrice: number = $state(),
+    codeSize: number = $state()
 
-  let automine = true
+  let automine = $state(true)
 
   const GeneralOpts = [
     { arg: "--block-time", value: blockTime },

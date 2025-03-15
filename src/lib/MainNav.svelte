@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { page } from "$app/state"
   import NavItem from "$lib/Icons.svelte"
   import { page } from "$app/stores"
-  import { live, killTestnet, startTestnet } from "../anvil"
+  import { live, killTestnet, startTestnet } from "$lib/anvil.svelte"
 
   const routes = ["log", "accounts", "blocks", "transactions",  "settings"]
 </script>
@@ -9,7 +10,7 @@
 <nav>
   <div class="nav--main">
     {#each routes as route}
-      {@const active = $page.url.pathname?.includes(route)}
+      {@const active = page.url.pathname?.includes(route)}
       <a
         class="nav-item"
         class:active
@@ -30,11 +31,11 @@
       <NavItem name="settings" active={$page.url.pathname?.includes("settings")} />
     </a> -->
     {#if !$live}
-      <button class="nav-item" on:click={() => startTestnet()}>
+      <button class="nav-item" onclick={() => startTestnet()}>
         <NavItem name="start" />
       </button>
     {:else}
-      <button class="nav-item" on:click={killTestnet}>
+      <button class="nav-item" onclick={killTestnet}>
         <NavItem name="pause" />
       </button>
     {/if}
