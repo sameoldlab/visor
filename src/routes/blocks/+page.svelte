@@ -1,6 +1,6 @@
 <script lang="ts">
   import Stat from "$lib/Stat.svelte"
-  import { blocks } from "../../anvil"
+  import { blocks } from "$lib/anvil.svelte"
   import { naturalDate } from "$lib/utils"
 
   let tx = $state(<

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { blocks, live } from "../../anvil"
+  import { blocks } from '$lib/anvil.svelte'
   import Stat from "$lib/Stat.svelte"
   import { client } from "$lib/clients/public"
   import type { Transaction, Address } from "viem"

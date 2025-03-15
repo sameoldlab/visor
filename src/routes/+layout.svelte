@@ -2,7 +2,7 @@
   import "$lib/styles/app.css"
   import "$lib/styles/normalize.css"
 
-  import { live } from "../anvil"
+  import { live } from "$lib/anvil.svelte"
   import MainNav from "$lib/MainNav.svelte"
   import ConfigData from "$lib/ConfigData.svelte"
   interface Props {

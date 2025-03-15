@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { testnet_log } from '../../anvil'
+  import { testnet_log } from '$lib/anvil.svelte'
 </script>
 
 

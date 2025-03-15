@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { killTestnet, live, startTestnet } from "$lib/anvil.svelte"
+  import { live } from "$lib/anvil.svelte"
   let parseArgs = $state("")
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault()
-    if (parseArgs.trim() == "") return startTestnet()
+  //   if (parseArgs.trim() == "") return startTestnet()
 
-    const args = parseArgs.replace("anvil", "").trim().split(" ")
-    return startTestnet(args)
+  //   const args = parseArgs.replace("anvil", "").trim().split(" ")
+  //   return startTestnet(args)
   }
 </script>
 

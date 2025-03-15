@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { block_number } from "../anvil"
+  import { block_number } from "$lib/anvil.svelte"
   import getConfig from "$lib/getConfig"
   import Stat from "$lib/Stat.svelte"
   import { onMount } from "svelte"

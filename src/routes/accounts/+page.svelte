@@ -4,7 +4,7 @@
   import type { Address } from "viem"
   import { formatEther } from "$lib/utils"
   import { client } from "$lib/clients/public"
-  import { live, block_number } from "../../anvil"
+  import { live, block_number } from '$lib/anvil.svelte'
 
   type Account = {
     address: Address
