@@ -5,19 +5,10 @@
   import type { Transaction, Address } from "viem"
   import { formatEther } from "viem"
   import { trunc, naturalDate } from "$lib/utils"
-  import { fade, slide, blur } from "svelte/transition"
+  import { fade } from "svelte/transition"
 
   let transactions: Transaction[] = $state([])
-
-  // Currently recreating the entire array every update. Not good for performance.
-  blocks.subscribe((val) => {
-    let hashes: Address[]
-    hashes = val.reduce((accumulate: Address[], current) => {
-      if (current.transactions) accumulate.push(...current.transactions)
-      return accumulate
-    }, [])
-    void resolve(hashes)
-  })
+  // let hashes: Address[] = $derived([blocks().flatMap(b => b.transactions)])
 
   async function resolve(hashes: Address[]) {
     transactions = await Promise.all(
@@ -83,7 +74,7 @@
       <button class="item row p-base" onclick={() => setActive(id)} in:fade|global>
         <span class="data hash">{hash}</span>
         <div class="text-right">
-          <Stat title="To: " data={trunc(to)} border={false} unstack={true} />
+          <Stat title="To: " data={trunc(to||'')} border={false} unstack={true} />
           <Stat
             title="From: "
             data={trunc(from)}
@@ -105,7 +96,7 @@
             <Stat title="Block #" data={t.blockNumber} border={false} />
             <Stat
               title="Timestamp"
-              data={naturalDate($blocks[Number(t.blockNumber) - 1]?.timestamp)}
+              data={naturalDate(blocks()[Number(t.blockNumber) - 1]?.timestamp)}
               border={false}
             />
             <div class=" text-right">

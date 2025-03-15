@@ -18,7 +18,7 @@
   let rpc = "localhost:8545" //get from settings config
 
   let chain_state = $derived([
-    { title: "Block #", data: $block_number, grow: false },
+    { title: "Block #", data: block_number(), grow: false },
     { title: "Base Fee", data: base_fee, grow: false },
     { title: "Gas Limit", data: gas_limit, grow: false },
     { title: "Gas Price", data: gas_price, grow: false },

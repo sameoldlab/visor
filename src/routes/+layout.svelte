@@ -14,7 +14,7 @@
 
 <MainNav />
 <main>
-  {#if $live}
+  {#if live()}
     <ConfigData />
   {/if}
   {@render children?.()}

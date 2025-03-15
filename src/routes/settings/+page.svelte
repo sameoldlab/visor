@@ -15,7 +15,7 @@
   Real GUI soon™
   <hr />
   <br />
-  {#if !$live}
+  {#if !live()}
     <p class="title">Customize <code>`run`</code> command:</p>
     <form class="custom--run" onsubmit={handleSubmit}>
       <input bind:value={parseArgs} placeholder="anvil" />

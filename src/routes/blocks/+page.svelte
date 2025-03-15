@@ -25,7 +25,7 @@
 <div class="container">
   <h1>Blocks</h1>
   <div class="box">
-    {#each $blocks as { number, hash, timestamp, transactions }, i}
+    {#each blocks() as { number, hash, timestamp, transactions }, i}
       <button class="item row p-base" onclick={() => viewTx(i)}>
         <div class="row row-tight">
           <span class="id">{number?.toString()}</span>

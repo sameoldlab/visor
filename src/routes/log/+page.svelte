@@ -6,7 +6,7 @@
 <div class="term">
   <!-- \[+\d+m/g -->
   <p>
-    {@html $testnet_log
+    {@html testnet_log()
       .replaceAll("[32m", `<span style='color: greenyellow'>`)
       .replaceAll("[0m", "</span>")
       .replaceAll("eth_getBlockByNumber<br/>", "")}

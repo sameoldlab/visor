@@ -5,6 +5,7 @@
   import { formatEther } from "$lib/utils"
   import { client } from "$lib/clients/public"
   import { live, block_number } from '$lib/anvil.svelte'
+    import { untrack } from "svelte";
 
   type Account = {
     address: Address
@@ -27,7 +28,11 @@
   }
 
   //   Update accounts data on each block
-  block_number.subscribe(() => {
+  $effect(() => {
+    
+  block_number()
+
+  untrack(() => {
     const promise = accounts.map(async (current) => {
       const { balance, transaction_count } = await updAccount(current.address)
       return { ...current, balance, transaction_count }
@@ -36,8 +41,8 @@
     Promise.all(promise)
       .then((res) => (accounts = res))
       .catch((err) => console.error(err))
+    })
   })
-
   const loadData = async () => {
     const data = await getConfig()
 
@@ -58,7 +63,7 @@
 </script>
 
 <div class="container">
-  {#if $live}
+  {#if live()}
     <div class="box">
       {#await loadData() then { wallet }}
         <div class="wallet-config">
