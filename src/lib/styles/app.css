@@ -1,5 +1,3 @@
-@import "styles/normalize.scss";
-
 :root {
   --background: #111111;
   --border: 1px solid #373737;
@@ -27,7 +25,7 @@ h1 {
   font-weight: 600;
   font-size: 24px;
   line-height: 100%;
-  //   letter-spacing: 0.025em;
+/* letter-spacing: 0.025em; */
 }
 
 button {
@@ -40,7 +38,7 @@ button {
 .btn {
   padding: 12px 16px;
   font-weight: 700;
-  font-size: 16px; // no mixing
+/* font-size: 16px;  no mixing */
   text-transform: uppercase;
 }
 
@@ -117,13 +115,13 @@ code {
 }
 
 .row {
-  //   width: 100%;
+/* width: 100%; */
   align-items: center;
   display: flex;
   flex-wrap: wrap; /* Almost "responsive" */
   gap: 16px;
   justify-content: space-between;
-  //   overflow-wrap: break-word;
+/* overflow-wrap: break-word; */
 
   &-tight {
     justify-content: flex-start;
@@ -134,5 +132,5 @@ code {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  // padding-bottom: 20px;
+/* padding-bottom: 20px; */
 }

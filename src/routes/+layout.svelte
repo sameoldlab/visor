@@ -1,5 +1,6 @@
 <script>
-  import "../app.scss"
+  import "$lib/styles/app.css"
+  import "$lib/styles/normalize.css"
 
   import { live } from "../anvil"
   import MainNav from "$lib/MainNav.svelte"

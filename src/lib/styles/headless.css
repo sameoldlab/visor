@@ -1,6 +1,4 @@
-@import "./globals.scss";
-
-// Listbox Options
+ /* Listbox Options */
 ul[role="listbox"] {
   background: #202023;
   position: fixed;
@@ -30,7 +28,7 @@ ul[role="listbox"] {
   }
 }
 
-//Listbox Button
+/* Listbox Button */
 .list-btn {
   background: #202023;
   padding: 0.5rem 1rem;
@@ -61,7 +59,7 @@ ul[role="tablist"] {
     transition: all 0.125s ease-in-out;
 
     &:hover {
-      //   background: hsla(0, 0%, 100%, 0.125);
+      /* background: hsla(0, 0%, 100%, 0.125); */
       color: var(--text);
     }
     &[aria-selected="true"] {
@@ -116,7 +114,7 @@ ul[role="tablist"] {
     &-on {
       left: calc(100% - var(--offset));
       transform: translateX(-100%);
-      //   transform: translateX(0.1rem);
+        /* transform: translateX(0.1rem); */
     }
   }
 
